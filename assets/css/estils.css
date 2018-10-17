@@ -1,0 +1,44 @@
+body{
+  background-image: url(../img/background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+*{
+  color: #FFFFFF;
+}
+.titulo{
+  margin-bottom: 40px;
+}
+.formulario{
+  margin-bottom: 30px;
+}
+
+.disparar{
+  margin-right: 142px;
+}
+.button{
+  margin-bottom: 10px;
+}
+.info{
+  background-color: #FFFFFF;
+  width: 300px;
+  height: 300px;
+}
+.div1{
+  margin-left: 225px;
+}
+.historial{
+  background-color: #FFFFFF;
+  width: 300px;
+  height: 300px;
+}
+.historial2{
+  margin-right: 48px;
+}
+.checkbox{
+  margin-left: 10px !important;
+  margin-right: 10px !important;
+}
+.checkbox>pre{
+  margin-left: 5px;
+}
