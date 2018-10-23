@@ -9,40 +9,38 @@ private $fuerza_ataque = 10;
   public function __construct($numero_serie,$fabricant){
     $this->numero_serie = $numero_serie;
     $this->fabricant = $fabricant;
-    $this->vida = $vida_maxima;
+    $this->vida = $this->vida_maxima;
   }
+
   public function getfabricant(){
     return $this->fabricant;
   }
   public function setVida($vida){
     $this->vida = $vida;
   }
-  public function disparar($Casa_estelar){
+  public function disparar($CE){
     $r=rand(1,10);
     $atac_total = $r + $this->fuerza_ataque;
-    if($Casa_estelar->getfabricant == "Republica" ){
-      $escut = $Casa_estelar->getescut;
+    if($CE->getfabricant == "Republica" ){
+      $escut = $CE->getescut;
       if($escut<$atac_total){
-        $vidae = $Casa_estelar->vida + $Casa_estelar->escut;
+        $vidae = $CE->vida + $CE->escut;
         $vidae = $vidae - $atac_total;
-        $Casa_estelar->setVida($vidae);
+        $CE->setVida($vidae);
       }else if($escut==0){
-        $vida = $Casa_estelar->vida;
+        $vida = $CE->vida;
         $vida = $vida - $atac_total;
-        $Casa_estelar->setVida($vida);
+        $CE->setVida($vida);
       }else{
         $escut = $escut - $atac_total;
-        $Casa_estelar->setEscut($escut);
+        $CE->setEscut($escut);
       }
 
     }else{
-      $vida = $Casa_estelar->vida;
+      $vida = $CE->vida;
       $vida = $vida - $atac_total;
-      $Casa_estelar->setVida($vida);
+      $CE->setVida($vida);
     }
   }
-
-
-
-
+}
  ?>

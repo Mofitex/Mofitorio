@@ -1,4 +1,5 @@
 <?php
+include_once 'includes/Casa_estelar.php';
 class X_Wing extends Casa_estelar{
     private $R2D2;
   private $escut_maxim = 150;
@@ -6,7 +7,7 @@ class X_Wing extends Casa_estelar{
   public function __construct($numero_serie,$fabricant,$R2D2){
     parent::__construct($numero_serie,$fabricant);
     $this->R2D2 = $R2D2;
-    $this->escut = $escut_maxim;
+    $this->escut = $this->escut_maxim;
   }
   public function getescut(){
     return $this->escudo;
@@ -33,8 +34,8 @@ class X_Wing extends Casa_estelar{
       }
     }
   }
-  public function disparar($Casa_estelar){
-    parent::disparar($Casa_estelar);
+  public function disparar($CE){
+    parent::disparar($CE);
   }
 
 }
