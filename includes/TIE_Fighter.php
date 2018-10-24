@@ -1,5 +1,5 @@
 <?php
-include_once 'includes/Casa_estelar.php';
+include_once 'Casa_estelar.php';
 class TIE_Fighter extends Casa_estelar{
 
   public function __construct($numero_serie,$fabricant){

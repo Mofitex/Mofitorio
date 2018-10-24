@@ -1,5 +1,5 @@
 <?php
-include_once 'includes/Casa_estelar.php';
+include_once 'Casa_estelar.php';
 class X_Wing extends Casa_estelar{
     private $R2D2;
   private $escut_maxim = 150;

@@ -6,6 +6,9 @@ body{
 *{
   color: #FFFFFF;
 }
+.info{
+  color: #000000;
+}
 .titulo{
   margin-bottom: 40px;
 }
