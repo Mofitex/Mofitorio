@@ -33,7 +33,7 @@
     <div class="row">
       <div class="col-md-4 div1">
         <form method="post" action="includes/RD.php">
-          <button class="btn btn-danger disparar button">Disparar</button>
+          <button class="btn btn-danger disparar button" name="disparar">Disparar</button>
           <button class="btn btn-info reparar button">Reparar</button>
         </form>
         <div class="info" name="textarea" ><?php
