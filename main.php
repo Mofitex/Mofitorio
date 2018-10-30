@@ -7,6 +7,11 @@
 <body>
   <?php
 
+include_once 'includes/RD.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+$txt ="";
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
@@ -32,14 +37,22 @@
     </div>
     <div class="row">
       <div class="col-md-4 div1">
-        <form method="post" action="includes/RD.php">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
           <button class="btn btn-danger disparar button" name="disparar">Disparar</button>
           <button class="btn btn-info reparar button">Reparar</button>
         </form>
         <div class="info" name="textarea" ><?php
+
         if(isset($_COOKIE["Benvingut"])){
           echo $_COOKIE["Benvingut"];
         }
+        if(isset($_POST["disparar"])){
+          $wing=$_SESSION["wing"];
+          $fighter= $_SESSION['fighter'];
+          $twing=$wing->disparar($fighter[1]);
+          echo $twing;
+        }
+
         ?></div>
       </div>
       <div class="col-md-4">

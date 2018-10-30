@@ -2,6 +2,9 @@
 
 include_once 'X_Wing.php';
 include_once 'TIE_Fighter.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	$cookie_value;
@@ -26,19 +29,21 @@ for($i=1;$i<6;$i++){
   $fabricant = "Imperio";
 	$clase = new TIE_Fighter($numero_serie,$fabricant);
 	array_push($fighter,$clase);
-	setcookie("ArrayT", serialize($fighter), time() + (86400 * 30), "/");
+
 }
+
+$_SESSION['fighter']=$fighter;
+
 $cookie_name = "nombreFighters";
 $cookie_value = count($fighter);
 setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 
-$wing = array();
 	$numero_serie = $_COOKIE["serie"];
   $fabricant = "Republica";
   $R2D2 = $cookie_value;
-	$clase2 = new X_Wing($numero_serie,$fabricant,$R2D2);
-	$wing = $clase2;
-	setcookie("Wing", serialize($clase2), time() + (86400 * 30), "/");
+
+	$wing = new X_Wing($numero_serie,$fabricant,$R2D2);
+	$_SESSION['wing']=$wing;
 
 	$cookie_name = "dataHora";
 	$cookie_value = date("Y-m-d h:i:sa");
@@ -46,7 +51,7 @@ $wing = array();
 
 	$cookie_name = "partidaIniciada";
 	$cookie_value = "true";
-	session_start();
+
 	setcookie("Benvingut", "Benvingut a la partida!", time() + (86400 * 30), "/");
 
 	header('Location: ../main.php');

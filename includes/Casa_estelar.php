@@ -21,7 +21,7 @@ private $fuerza_ataque = 10;
   public function disparar($CE){
     $r=rand(1,10);
     $atac_total = $r + $this->fuerza_ataque;
-    if($CE->getfabricant == "Republica" ){
+    if($CE->getfabricant() == "Republica" ){
       $escut = $CE->getescut;
       if($escut<$atac_total){
         $vidae = $CE->vida + $CE->escut;

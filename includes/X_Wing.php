@@ -9,8 +9,12 @@ class X_Wing extends Casa_estelar{
     $this->R2D2 = $R2D2;
     $this->escut = $this->escut_maxim;
   }
+  public function getfabricant(){
+    parent::getfabricant();
+  }
+
   public function getescut(){
-    return $this->escudo;
+    return $this->escut;
   }
   public function setEscut($escut){
     $this->escut = $escut;
