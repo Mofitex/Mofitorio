@@ -12,8 +12,15 @@ private $fuerza_ataque = 10;
     $this->vida = $this->vida_maxima;
   }
 
+  public function getSerie(){
+    return $this->numero_serie;
+  }
+
   public function getfabricant(){
     return $this->fabricant;
+  }
+  public function getVida(){
+    return $this->vida;
   }
   public function setVida($vida){
     $this->vida = $vida;
@@ -22,7 +29,7 @@ private $fuerza_ataque = 10;
     $r=rand(1,10);
     $atac_total = $r + $this->fuerza_ataque;
     if($CE->getfabricant() == "Republica" ){
-      $escut = $CE->getescut;
+      $escut = $CE->getEscut;
       if($escut<$atac_total){
         $vidae = $CE->vida + $CE->escut;
         $vidae = $vidae - $atac_total;
@@ -41,6 +48,7 @@ private $fuerza_ataque = 10;
       $vida = $vida - $atac_total;
       $CE->setVida($vida);
     }
+    return $atac_total;
   }
 }
  ?>

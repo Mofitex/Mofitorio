@@ -36,28 +36,30 @@ $txt ="";
       </form>
     </div>
     <div class="row">
+      <div class="col-md-2"></div>
       <div class="col-md-4 div1">
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-          <button class="btn btn-danger disparar button" name="disparar">Disparar</button>
-          <button class="btn btn-info reparar button">Reparar</button>
+        <form method="post" action="includes/RD.php">
+        <div class="botones">
+          <button class="btn btn-danger button" name="disparar">Disparar</button>
+          <button class="btn btn-info button">Reparar</button>
+        </div>
         </form>
-        <div class="info" name="textarea" ><?php
+        <div class="info" name="textarea"><?php
 
         if(isset($_COOKIE["Benvingut"])){
           echo $_COOKIE["Benvingut"];
         }
-        if(isset($_POST["disparar"])){
-          $wing=$_SESSION["wing"];
-          $fighter= $_SESSION['fighter'];
-          $twing=$wing->disparar($fighter[1]);
-          echo $twing;
+        if(isset($_COOKIE["info"])){
+          echo $_COOKIE["info"];
         }
 
         ?></div>
       </div>
       <div class="col-md-4">
-          <button class="btn btn-info button historial2">Mostrar Historial</button>
+        <div class="botones">
+          <button class="btn btn-info button">Mostrar Historial</button>
           <button class="btn btn-danger button">Borrar Historial</button>
+        </div>
           <div class="historial"></div>
       </div>
     </div>

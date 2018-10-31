@@ -9,15 +9,30 @@ class X_Wing extends Casa_estelar{
     $this->R2D2 = $R2D2;
     $this->escut = $this->escut_maxim;
   }
-  public function getfabricant(){
-    parent::getfabricant();
-  }
 
-  public function getescut(){
+  public function getEscut(){
     return $this->escut;
   }
   public function setEscut($escut){
     $this->escut = $escut;
+  }
+  public function disparar($CE){
+    $r=rand(1,10);
+    $atac_total = $r + $this->fuerza_ataque;
+      $escut = $CE->getEscut;
+      if($escut<$atac_total){
+        $vidae = $CE->vida + $CE->escut;
+        $vidae = $vidae - $atac_total;
+        $CE->setVida($vidae);
+      }else if($escut==0){
+        $vida = $CE->vida;
+        $vida = $vida - $atac_total;
+        $CE->setVida($vida);
+      }else{
+        $escut = $escut - $atac_total;
+        $CE->setEscut($escut);
+      }
+    return $atac_total;
   }
   public function reparar($R2D2){
     if($this->vida<76){
@@ -37,9 +52,6 @@ class X_Wing extends Casa_estelar{
         }
       }
     }
-  }
-  public function disparar($CE){
-    parent::disparar($CE);
   }
 
 }

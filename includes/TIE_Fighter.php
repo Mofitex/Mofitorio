@@ -13,14 +13,6 @@ class TIE_Fighter extends Casa_estelar{
       $this->setVida(100);
     }
   }
-
-  public function getfabricant(){
-    parent::getfabricant();
-  }
-
-  public function disparar($CE){
-    parent::disparar($CE);
-  }
   public function escollir_accio($CE){
     $r = rand(1,2);
     if($r==1){
@@ -28,6 +20,7 @@ class TIE_Fighter extends Casa_estelar{
     }else{
       $this->disparar($CE);
     }
+    return $r;
   }
 }
 ?>

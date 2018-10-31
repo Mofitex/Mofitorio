@@ -52,7 +52,7 @@ setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
 	$cookie_name = "partidaIniciada";
 	$cookie_value = "true";
 
-	setcookie("Benvingut", "Benvingut a la partida!", time() + (86400 * 30), "/");
+	setcookie("Benvingut", "Benvingut a la partida!<br>", time() + (86400 * 30), "/");
 
 	header('Location: ../main.php');
 	exit;
