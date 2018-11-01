@@ -11,18 +11,12 @@ include_once 'includes/RD.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-$txt ="";
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
-       if(!isset($_COOKIE["partidaIniciada"])) {
-       }
-       else{
-         $partidaIniciada = $_COOKIE["partidaIniciada"];
-       }
-
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if(!isset($_COOKIE["partidaIniciada"])) {
+  }else{
+    $partidaIniciada = $_COOKIE["partidaIniciada"];
   }
+}
 ?>
   <div class="container">
     <div class="text-center titulo">
@@ -36,23 +30,54 @@ $txt ="";
       </form>
     </div>
     <div class="row">
-      <div class="col-md-2"></div>
+      <div class="col-md-3">
+        <div class="informe text-center"><?php if(isset($_COOKIE["informe"])){ echo $_COOKIE["informe"];}   ?></div>
+        <div class="XWing">
+          <?php
+          if(isset($_COOKIE["vidaXW"]) && isset($_COOKIE["escutXW"])){
+            $escut = ($_COOKIE["escutXW"]/150)*100;
+            echo "<img src='assets/img/X_wing.jpg'>";
+            echo "<div class='vida' style='width:".$_COOKIE["vidaXW"]."%'><div class='escudo' style='width:".$escut."%'></div></div>";
+          }else{
+            echo "<img src='assets/img/X_wing.jpg'>";
+            echo "<div class='vida' style='width:100%'><div class='escudo' style='width:100%'></div></div>";
+          }
+           ?>
+
+        </div>
+        <div class="TF text-center">
+          <?php
+          if(isset($_COOKIE["vidaTF"])){
+            echo "<img style='width:55%;height:55%' src='assets/img/T_fighter.png'>";
+            echo "<div class='vida' style='width:".$_COOKIE["vidaTF"]."%'></div>";
+          }else{
+            echo "<img style='width:55%;height:55%' src='assets/img/T_fighter.png'>";
+            echo "<div class='vida' style='width:100%'></div>";
+          }
+           ?>
+        </div>
+      </div>
       <div class="col-md-4 div1">
         <form method="post" action="includes/RD.php">
         <div class="botones">
           <button class="btn btn-danger button" name="disparar">Disparar</button>
-          <button class="btn btn-info button">Reparar</button>
+          <button class="btn btn-info button" name="reparar">Reparar</button>
         </div>
         </form>
         <div class="info" name="textarea"><?php
 
+        if(isset($_COOKIE["infoTF"])){
+          echo $_COOKIE["infoTF"];
+        }
+        if(isset($_COOKIE["infoXW"])){
+          echo $_COOKIE["infoXW"];
+        }
+        if(isset($_COOKIE["history"])){
+          echo $_COOKIE["history"];
+        }
         if(isset($_COOKIE["Benvingut"])){
           echo $_COOKIE["Benvingut"];
         }
-        if(isset($_COOKIE["info"])){
-          echo $_COOKIE["info"];
-        }
-
         ?></div>
       </div>
       <div class="col-md-4">

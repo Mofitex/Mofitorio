@@ -6,20 +6,15 @@ class TIE_Fighter extends Casa_estelar{
     parent::__construct($numero_serie,$fabricant);
   }
   public function reparar(){
-    if($this->vida<76){
-      $vida = $this->vida+25;
+    if($this->getVida()<76){
+      $vida = $this->getVida()+25;
       $this->setVida($vida);
     }else{
       $this->setVida(100);
     }
   }
-  public function escollir_accio($CE){
-    $r = rand(1,2);
-    if($r==1){
-      $this->reparar();
-    }else{
-      $this->disparar($CE);
-    }
+  public function escollir_accio(){
+    $r = rand(1,3);
     return $r;
   }
 }

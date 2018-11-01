@@ -51,3 +51,15 @@ body{
 .div1{
   margin-right: 4%;
 }
+.vida{
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: red;
+  height: 10px;
+}
+.escudo{
+  width: 100%;
+  background-color: blue;
+  height: 10px;
+}

@@ -33,10 +33,7 @@ for($i=1;$i<6;$i++){
 }
 
 $_SESSION['fighter']=$fighter;
-
-$cookie_name = "nombreFighters";
-$cookie_value = count($fighter);
-setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+setcookie("TFnumero", 0, time() + (86400 * 30), "/");
 
 	$numero_serie = $_COOKIE["serie"];
   $fabricant = "Republica";

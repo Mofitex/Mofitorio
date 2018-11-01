@@ -13,41 +13,27 @@ class X_Wing extends Casa_estelar{
   public function getEscut(){
     return $this->escut;
   }
+  public function getMaxEscut(){
+    return $this->escut_maxim;
+  }
   public function setEscut($escut){
     $this->escut = $escut;
   }
-  public function disparar($CE){
-    $r=rand(1,10);
-    $atac_total = $r + $this->fuerza_ataque;
-      $escut = $CE->getEscut;
-      if($escut<$atac_total){
-        $vidae = $CE->vida + $CE->escut;
-        $vidae = $vidae - $atac_total;
-        $CE->setVida($vidae);
-      }else if($escut==0){
-        $vida = $CE->vida;
-        $vida = $vida - $atac_total;
-        $CE->setVida($vida);
-      }else{
-        $escut = $escut - $atac_total;
-        $CE->setEscut($escut);
-      }
-    return $atac_total;
-  }
   public function reparar($R2D2){
-    if($this->vida<76){
-      $vida = $this->vida +25;
+    if($this->getVida()<=75){
+      $vida = $this->getVida() + 25;
       $this->setVida($vida);
     }else{
-      $vida = $this->vida_maxima - $this->vida;
-      $this->setVida($vida);
-      $escudo = 25 - $vida;
+      $vida = $this->getMaxVida() - $this->getVida();
+      $escut = 25 - $vida;
+      $this->setVida(100);
+
       if($R2D2==true){
-        $escut_restant = $this->escut_maxim - $this->escut;
+        $escut_restant = $this->getMaxEscut() - $this->getEscut();
         if($escut_restant<$escut){
           $this->setEscut(150);
         }else{
-          $escut = $this->escut + $escut;
+          $escut = $this->getEscut() + $escut;
           $this->setEscut($escut);
         }
       }
