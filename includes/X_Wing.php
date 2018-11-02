@@ -20,6 +20,7 @@ class X_Wing extends Casa_estelar{
     $this->escut = $escut;
   }
   public function reparar($R2D2){
+  if($R2D2=="false"){
     if($this->getVida()<=75){
       $vida = $this->getVida() + 25;
       $this->setVida($vida);
@@ -27,17 +28,39 @@ class X_Wing extends Casa_estelar{
       $vida = $this->getMaxVida() - $this->getVida();
       $escut = 25 - $vida;
       $this->setVida(100);
+    }
+  }
+      if($R2D2=="true"){
 
-      if($R2D2==true){
-        $escut_restant = $this->getMaxEscut() - $this->getEscut();
+        if($this->getVida()<=75){
+          $vida = $this->getVida() + 25;
+          $this->setVida($vida);
+        }if ($this->getVida()>75 && $this->getVida()<=99) {
+          $vida = $this->getMaxVida() - $this->getVida();
+          $escut = 25 - $vida;
+          $this->setVida(100);
+          $this->setEscut($escut);
+        }
+        if ($this->getVida()==100) {
+
+          if ($this->getEscut()<=125) {
+            $nuevo_escudo=$this->getEscut()+25;
+            $this->setEscut($nuevo_escudo);
+          }else {
+            $this->setEscut(150);
+          }
+
+
+        /*$escut_restant = $this->getMaxEscut() - $this->getEscut();
         if($escut_restant<$escut){
           $this->setEscut(150);
         }else{
           $escut = $this->getEscut() + $escut;
           $this->setEscut($escut);
-        }
+        }*/
       }
-    }
+      }
+
   }
 
 }
