@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if(isset($_COOKIE["dataHora"])){
     if(isset($_POST["disparar"])){
 
-        if($TF->getVida()<=0 && $TF->getSerie()==5){
-
+        if($TF->getVida()<=0 && $TF->getSerie()==5 || $wing->getVida()<=0){
+          
         }else{
           if(isset($_COOKIE["infoTF"])){
 
@@ -60,6 +60,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               setcookie("TFnumero", $count , time() + (86400 * 30), "/");
             }
 
+          }else if($wing->getVida()<=0){
+            $informe = "No te queda vida. Has Perdido!! <br>";
+            setcookie("informe", $informe , time() + (86400 * 30), "/");
           }
           setcookie("vidaXW", $wing->getVida() , time() + (86400 * 30), "/");
           setcookie("escutXW", $wing->getEscut() , time() + (86400 * 30), "/");
@@ -69,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     }
     if(isset($_POST["reparar"])){
-      if($TF->getVida()<=0 && $TF->getSerie()==5){
+      if($TF->getVida()<=0 && $TF->getSerie()==5 || $wing->getVida()<=0){
 
       }else{
         if(isset($_COOKIE["infoTF"])){
