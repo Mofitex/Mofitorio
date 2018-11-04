@@ -57,9 +57,10 @@ body{
   margin-bottom: 5px;
   background-color: red;
   height: 10px;
+  border: 2px solid black;
 }
 .escudo{
   width: 100%;
   background-color: blue;
-  height: 10px;
+  height: 100%;
 }

@@ -75,8 +75,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if(isset($_COOKIE["history"])){
           echo $_COOKIE["history"];
         }
-        if(isset($_COOKIE["Benvingut"])){
-          echo $_COOKIE["Benvingut"];
+        if(isset($_COOKIE["benvingut"])){
+          echo $_COOKIE["benvingut"];
         }
         ?></div>
       </div>

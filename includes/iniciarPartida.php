@@ -9,18 +9,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	$cookie_value;
 	if (isset($_POST['r2d2'])) {
- 		 $cookie_name = "R2D2";
- 		 $cookie_value = "true";
- 		 setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+ 		 setcookie("R2D2", "true", time() + (86400 * 30), "/");
  	 }else{
- 		 $cookie_name = "R2D2";
- 		 $cookie_value = "false";
- 		 setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+ 		 setcookie("R2D2", "false", time() + (86400 * 30), "/");
  	 }
 	 if(isset($_POST["serie"])){
-		 $cookie_name = "serie";
-		 $cookie_value = $_POST['serie'];
-		 setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
+		 setcookie("serie", $_POST['serie'], time() + (86400 * 30), "/");
 	 }
 
 $fighter = array();
@@ -49,7 +43,7 @@ setcookie("TFnumero", 0, time() + (86400 * 30), "/");
 	$cookie_name = "partidaIniciada";
 	$cookie_value = "true";
 
-	setcookie("Benvingut", "Benvingut a la partida!<br>", time() + (86400 * 30), "/");
+	setcookie("benvingut", "Benvingut a la partida!<br>", time() + (86400 * 30), "/");
 
 	header('Location: ../main.php');
 	exit;

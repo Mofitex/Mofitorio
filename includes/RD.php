@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if(isset($_POST["disparar"])){
 
         if($TF->getVida()<=0 && $TF->getSerie()==5 || $wing->getVida()<=0){
-          
+
         }else{
           if(isset($_COOKIE["infoTF"])){
 
@@ -53,6 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if($TF->getSerie()==5){
               $informe = "Todos los cazas destruidos. Has Ganado!! <br>";
               setcookie("informe", $informe , time() + (86400 * 30), "/");
+
+
             }else{
               $count += 1;
               $informe = "Caza TF" . $TF->getSerie() . " ha sido destruido. <br>";
