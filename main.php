@@ -2,7 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="assets/css/estils.css">
+<link rel="stylesheet" type="text/css" href="assets/css/estils.css?v=<?php echo time(); ?>">
 </head>
 <body>
   <?php
@@ -37,10 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           if(isset($_COOKIE["vidaXW"]) && isset($_COOKIE["escutXW"])){
             $escut = ($_COOKIE["escutXW"]/150)*100;
             echo "<img src='assets/img/X_wing.jpg'>";
-            echo "<div class='vida' style='width:".$_COOKIE["vidaXW"]."%'><div class='escudo' style='width:".$escut."%'></div></div>";
+            echo "<div class='border'><div class='vida' style='width:".$_COOKIE["vidaXW"]."%'><div class='escudo' style='width:".$escut."%'></div></div></div>";
           }else{
             echo "<img src='assets/img/X_wing.jpg'>";
-            echo "<div class='vida' style='width:100%'><div class='escudo' style='width:100%'></div></div>";
+            echo "<div class='border'><div class='vida' style='width:100%'><div class='escudo' style='width:100%'></div></div></div>";
           }
            ?>
 
@@ -49,10 +49,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <?php
           if(isset($_COOKIE["vidaTF"])){
             echo "<img style='width:55%;height:55%' src='assets/img/T_fighter.png'>";
-            echo "<div class='vida' style='width:".$_COOKIE["vidaTF"]."%'></div>";
+            echo "<div class='border'><div class='vida' style='width:".$_COOKIE["vidaTF"]."%'></div></div>";
           }else{
             echo "<img style='width:55%;height:55%' src='assets/img/T_fighter.png'>";
-            echo "<div class='vida' style='width:100%'></div>";
+            echo "<div class='border'><div class='vida' style='width:100%'></div></div>";
           }
            ?>
         </div>
@@ -81,10 +81,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ?></div>
       </div>
       <div class="col-md-4">
-        <div class="botones">
-          <button class="btn btn-info button">Mostrar Historial</button>
-          <button class="btn btn-danger button">Borrar Historial</button>
-        </div>
+        <form method="post" action="includes/Historial.php">
+          <div class="botones">
+            <button class="btn btn-info button" name="historial">Mostrar Historial</button>
+            <button class="btn btn-danger button" name="borrar">Borrar Historial</button>
+          </div>
+        </form>
           <div class="historial"></div>
       </div>
     </div>

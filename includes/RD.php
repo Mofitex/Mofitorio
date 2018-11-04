@@ -6,6 +6,17 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $R2D2 = $_COOKIE["R2D2"];
+  if($R2D2=="true"){
+    $R2D2 = true;
+  }else{
+    $R2D2 = false;
+  }
+  var_dump($R2D2);
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $db = "StarWarsBattle";
   $wing = $_SESSION["wing"];
   $arr = $_SESSION["fighter"];
   $count = $_COOKIE["TFnumero"];
@@ -17,8 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         }else{
           if(isset($_COOKIE["infoTF"])){
-
-            $texto .= $_COOKIE["infoTF"];
+            $texto = $_COOKIE["infoTF"];
             $texto .= $_COOKIE["infoXW"];
             $texto .= $_COOKIE["history"];
             $cortar = substr($texto, 0,2500);
@@ -44,17 +54,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           }else{
             $serieXW = $_COOKIE["serie"];
-            var_dump($serieXW);
             $dañoTF = $TF->disparar($wing);
             $txt = "TF". $TF->getSerie() ." le ha quitado: ". $dañoTF ." de vida a X_Wing <br>";
             setcookie("infoTF", $txt, time() + (86400 * 30), "/");
           }
+          setcookie("vidaXW", $wing->getVida() , time() + (86400 * 30), "/");
+          setcookie("escutXW", $wing->getEscut() , time() + (86400 * 30), "/");
+          setcookie("vidaTF", $TF->getVida() , time() + (86400 * 30), "/");
+
           if($TF->getVida()<=0){
             if($TF->getSerie()==5){
               $informe = "Todos los cazas destruidos. Has Ganado!! <br>";
               setcookie("informe", $informe , time() + (86400 * 30), "/");
-
-
+              //borrar cookies
+              setcookie("benvingut", "", time() - 1 , "/");
+              setcookie("escutXW", "", time() - 1 , "/");
+              setcookie("history", "", time() - 1 , "/");
+              setcookie("infoTF", "", time() - 1 , "/");
+              setcookie("infoXW", "", time() - 1 , "/");
+              setcookie("vidaTF", "", time() - 1 , "/");
+              setcookie("vidaXW", "", time() - 1 , "/");
+              //insertar info en la tabla
+              $conn = new mysqli($servername, $username, $password, $db);
+              $serieXW = $_COOKIE["serie"];
+              $serieXW = intval($serieXW);
+              $R2D2 = $_COOKIE["R2D2"];
+              if($R2D2=="true"){
+                $R2D2 = true;
+              }else{
+                $R2D2 = false;
+              }
+              $inici = $_COOKIE["dataHora"];
+              $inici = "'".$inici."'";
+              $sql = "INSERT INTO Partida (x_wing, r2d2, inici, fi) VALUES ($serieXW, $R2D2, STR_TO_DATE($inici, '%d-%c-%Y %T'), now())";
+              $conn->query($sql);
             }else{
               $count += 1;
               $informe = "Caza TF" . $TF->getSerie() . " ha sido destruido. <br>";
@@ -62,13 +95,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               setcookie("TFnumero", $count , time() + (86400 * 30), "/");
             }
 
-          }else if($wing->getVida()<=0){
+          }
+          if($wing->getVida()<=0){
             $informe = "No te queda vida. Has Perdido!! <br>";
             setcookie("informe", $informe , time() + (86400 * 30), "/");
+            //borrar cookies
+            setcookie("benvingut", "", time() - 1 , "/");
+            setcookie("escutXW", "", time() - 1 , "/");
+            setcookie("history", "", time() - 1 , "/");
+            setcookie("infoTF", "", time() - 1 , "/");
+            setcookie("infoXW", "", time() - 1 , "/");
+            setcookie("vidaTF", "", time() - 1 , "/");
+            setcookie("vidaXW", "", time() - 1 , "/");
+            setcookie("TFnumero", "", time() - 1 , "/");
+            //insertar info en la tabla
+            $conn = new mysqli($servername, $username, $password, $db);
+            $serieXW = $_COOKIE["serie"];
+            $serieXW = intval($serieXW);
+            $R2D2 = $_COOKIE["R2D2"];
+            if($R2D2=="true"){
+              $R2D2 = true;
+            }else{
+              $R2D2 = false;
+            }
+            $inici = $_COOKIE["dataHora"];
+            $inici = "'".$inici."'";
+            $sql = "INSERT INTO Partida (x_wing, r2d2, inici, fi) VALUES ($serieXW, $R2D2, STR_TO_DATE($inici, '%d-%c-%Y %T'), now())";
+            $conn->query($sql);
+            $conn->close();
+            setcookie("R2D2", "", time() - 1 , "/");
+            setcookie("serie", "", time() - 1 , "/");
+            setcookie("dataHora", "", time() - 1 , "/");
           }
-          setcookie("vidaXW", $wing->getVida() , time() + (86400 * 30), "/");
-          setcookie("escutXW", $wing->getEscut() , time() + (86400 * 30), "/");
-          setcookie("vidaTF", $TF->getVida() , time() + (86400 * 30), "/");
         }
 
 
@@ -113,10 +171,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $txt = "TF". $TF->getSerie() ." le ha quitado: ". $dañoTF ." de vida a X_Wing <br>";
         setcookie("infoTF", $txt, time() + (86400 * 30), "/");
       }
+      setcookie("vidaXW", $wing->getVida() , time() + (86400 * 30), "/");
+      setcookie("escutXW", $wing->getEscut() , time() + (86400 * 30), "/");
+      setcookie("vidaTF", $TF->getVida() , time() + (86400 * 30), "/");
       if($TF->getVida()<=0){
         if($TF->getSerie()==5){
           $informe = "Todos los cazas destruidos. Has Ganado!! <br>";
           setcookie("informe", $informe , time() + (86400 * 30), "/");
+          //borrar cookies
+          setcookie("benvingut", "", time() - 1 , "/");
+          setcookie("escutXW", "", time() - 1 , "/");
+          setcookie("history", "", time() - 1 , "/");
+          setcookie("infoTF", "", time() - 1 , "/");
+          setcookie("infoXW", "", time() - 1 , "/");
+          setcookie("vidaTF", "", time() - 1 , "/");
+          setcookie("vidaXW", "", time() - 1 , "/");
+          //insertar info en la tabla
+          $conn = new mysqli($servername, $username, $password, $db);
+          $serieXW = $_COOKIE["serie"];
+          $serieXW = intval($serieXW);
+          $R2D2 = $_COOKIE["R2D2"];
+          if($R2D2=="true"){
+            $R2D2 = true;
+          }else{
+            $R2D2 = false;
+          }
+          $inici = $_COOKIE["dataHora"];
+          $inici = "'".$inici."'";
+          $sql = "INSERT INTO Partida (x_wing, r2d2, inici, fi) VALUES ($serieXW, $R2D2, STR_TO_DATE($inici, '%d-%c-%Y %T'), now())";
+          $conn->query($sql);
         }else{
           $count += 1;
           $informe = "Caza TF " . $TF->getSerie() . " ha sido destruido. <br>";
@@ -124,14 +207,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           setcookie("TFnumero", $count , time() + (86400 * 30), "/");
         }
 
-      }else if($wing->getVida()<=0){
+      }
+      if($wing->getVida()<=0){
         $informe = "No te queda vida. Has Perdido!! <br>";
         setcookie("informe", $informe , time() + (86400 * 30), "/");
+        //borrar cookies
+        setcookie("benvingut", "", time() - 1 , "/");
+        setcookie("escutXW", "", time() - 1 , "/");
+        setcookie("history", "", time() - 1 , "/");
+        setcookie("infoTF", "", time() - 1 , "/");
+        setcookie("infoXW", "", time() - 1 , "/");
+        setcookie("vidaTF", "", time() - 1 , "/");
+        setcookie("vidaXW", "", time() - 1 , "/");
+        //insertar info en la tabla
+        $conn = new mysqli($servername, $username, $password, $db);
+        $serieXW = $_COOKIE["serie"];
+        $serieXW = intval($serieXW);
+        $R2D2 = $_COOKIE["R2D2"];
+        if($R2D2=="true"){
+          $R2D2 = true;
+        }else{
+          $R2D2 = false;
+        }
+        $inici = $_COOKIE["dataHora"];
+        $inici = "'".$inici."'";
+        $sql = "INSERT INTO Partida (x_wing, r2d2, inici, fi) VALUES ($serieXW, $R2D2, STR_TO_DATE($inici, '%d-%c-%Y %T'), now())";
+        $conn->query($sql);
       }
-
-      setcookie("vidaXW", $wing->getVida() , time() + (86400 * 30), "/");
-      setcookie("escutXW", $wing->getEscut() , time() + (86400 * 30), "/");
-      setcookie("vidaTF", $TF->getVida() , time() + (86400 * 30), "/");
     }
   }
   }

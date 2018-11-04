@@ -53,14 +53,18 @@ body{
 }
 .vida{
   width: 100%;
-  margin-top: 5px;
-  margin-bottom: 5px;
   background-color: red;
-  height: 10px;
-  border: 2px solid black;
+  height: 100%;
 }
 .escudo{
   width: 100%;
   background-color: blue;
   height: 100%;
+}
+.border{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  height: 10px;
+  border: 2px solid black;
 }
