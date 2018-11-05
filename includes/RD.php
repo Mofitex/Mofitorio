@@ -6,13 +6,6 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $R2D2 = $_COOKIE["R2D2"];
-  if($R2D2=="true"){
-    $R2D2 = true;
-  }else{
-    $R2D2 = false;
-  }
-  var_dump($R2D2);
   $servername = "localhost";
   $username = "root";
   $password = "";
@@ -78,12 +71,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               $conn = new mysqli($servername, $username, $password, $db);
               $serieXW = $_COOKIE["serie"];
               $serieXW = intval($serieXW);
-              $R2D2 = $_COOKIE["R2D2"];
-              if($R2D2=="true"){
-                $R2D2 = true;
-              }else{
-                $R2D2 = false;
-              }
               $inici = $_COOKIE["dataHora"];
               $inici = "'".$inici."'";
               $sql = "INSERT INTO Partida (x_wing, r2d2, inici, fi) VALUES ($serieXW, $R2D2, STR_TO_DATE($inici, '%d-%c-%Y %T'), now())";
@@ -113,11 +100,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $serieXW = $_COOKIE["serie"];
             $serieXW = intval($serieXW);
             $R2D2 = $_COOKIE["R2D2"];
-            if($R2D2=="true"){
-              $R2D2 = true;
-            }else{
-              $R2D2 = false;
-            }
             $inici = $_COOKIE["dataHora"];
             $inici = "'".$inici."'";
             $sql = "INSERT INTO Partida (x_wing, r2d2, inici, fi) VALUES ($serieXW, $R2D2, STR_TO_DATE($inici, '%d-%c-%Y %T'), now())";
@@ -191,11 +173,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $serieXW = $_COOKIE["serie"];
           $serieXW = intval($serieXW);
           $R2D2 = $_COOKIE["R2D2"];
-          if($R2D2=="true"){
-            $R2D2 = true;
-          }else{
-            $R2D2 = false;
-          }
           $inici = $_COOKIE["dataHora"];
           $inici = "'".$inici."'";
           $sql = "INSERT INTO Partida (x_wing, r2d2, inici, fi) VALUES ($serieXW, $R2D2, STR_TO_DATE($inici, '%d-%c-%Y %T'), now())";
@@ -224,11 +201,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $serieXW = $_COOKIE["serie"];
         $serieXW = intval($serieXW);
         $R2D2 = $_COOKIE["R2D2"];
-        if($R2D2=="true"){
-          $R2D2 = true;
-        }else{
-          $R2D2 = false;
-        }
         $inici = $_COOKIE["dataHora"];
         $inici = "'".$inici."'";
         $sql = "INSERT INTO Partida (x_wing, r2d2, inici, fi) VALUES ($serieXW, $R2D2, STR_TO_DATE($inici, '%d-%c-%Y %T'), now())";

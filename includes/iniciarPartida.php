@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $sql = "CREATE TABLE IF NOT EXISTS Partida (
     id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     x_wing INT(10),
-    r2d2 Boolean,
+    r2d2 varchar(5),
     inici datetime,
     fi datetime
     )";
