@@ -90,8 +90,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
           <div class="historial"><?php
 
-          if(isset($_SESSION["Historial"])){
-            echo $_SESSION["Historial"];
+          if(isset($_SESSION["historial"])){
+            echo $_SESSION["historial"];
+            var_dump("historial");
           }
           ?></div>
       </div>
