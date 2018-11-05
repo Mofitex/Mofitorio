@@ -8,6 +8,7 @@
   <?php
 
 include_once 'includes/RD.php';
+include_once 'includes/Historial.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -87,7 +88,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button class="btn btn-danger button" name="borrar">Borrar Historial</button>
           </div>
         </form>
-          <div class="historial"></div>
+          <div class="historial"><?php
+
+          if(isset($_SESSION["Historial"])){
+            echo $_SESSION["Historial"];
+          }
+          ?></div>
       </div>
     </div>
   </div>
