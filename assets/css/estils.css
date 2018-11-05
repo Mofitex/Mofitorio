@@ -6,9 +6,6 @@ body{
 *{
   color: #FFFFFF;
 }
-.info{
-  color: #000000;
-}
 .titulo{
   margin-bottom: 40px;
 }
@@ -23,12 +20,14 @@ body{
   margin-bottom: 10px;
 }
 .info{
+  color: #000000;
   background-color: #FFFFFF;
   width: 100%;
   height: 300px;
   overflow-y: scroll;
 }
 .historial{
+  color: #000000;
   background-color: #FFFFFF;
   width: 100%;
   height: 300px;
