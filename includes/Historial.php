@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if(isset($_POST["borrar"])){
     $sql = "DELETE * FROM partida";
     $conn->query($sql);
-    session_destroy();
+    $_SESSION["historial"] = "";
   }
   header('Location: ../main.php');
 	exit;

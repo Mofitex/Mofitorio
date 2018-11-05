@@ -88,11 +88,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button class="btn btn-danger button" name="borrar">Borrar Historial</button>
           </div>
         </form>
-          <div class="historial"><?php
+          <div class="info"><?php
 
           if(isset($_SESSION["historial"])){
             echo $_SESSION["historial"];
-            var_dump("historial");
+            
           }
           ?></div>
       </div>
